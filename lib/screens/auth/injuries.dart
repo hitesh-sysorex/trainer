@@ -4,6 +4,7 @@ import 'package:trainer/models/fitnessgoalmodel.dart';
 import 'package:material_design_icons_flutter/icon_map.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:trainer/screens/auth/fitnessgoalcheckbox.dart';
+import 'package:trainer/screens/auth/loginpage.dart';
 import 'package:trainer/screens/traininglocation.dart';
 
 class Injuries extends StatefulWidget {
@@ -14,6 +15,7 @@ class Injuries extends StatefulWidget {
 }
 
 class _InjuriesState extends State<Injuries> {
+  List<String> injuriesArray = [];
   List<NotificationSetting> notifications = [
     NotificationSetting(
         title: "no I don't have any medical conditions",
@@ -95,6 +97,7 @@ class _InjuriesState extends State<Injuries> {
                 right: 20,
                 child: IconButton(
                     onPressed: () {
+                      userStorage.setItem('injuries', injuriesArray);
                       Navigator.of(context).push(
                           MaterialPageRoute(builder: (context) => Location()));
                     },
@@ -115,6 +118,7 @@ class _InjuriesState extends State<Injuries> {
         notification: notification,
         onClicked: () {
           setState(() {
+            injuriesArray.add(notification.title!);
             final newValue = !notification.value;
             notification.value = newValue;
           });

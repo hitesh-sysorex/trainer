@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:trainer/screens/auth/fitnessgoalcheckbox.dart';
 import 'package:trainer/screens/auth/loginpage.dart';
 import 'package:trainer/screens/home/home.dart';
 import 'package:trainer/widgets/button.dart';
@@ -74,7 +75,30 @@ class _SignupScreenState extends State<SignupScreen> {
                         SizedBox(
                           height: 25.h,
                         ),
-                        Button("Sign Up", Home()),
+                        ElevatedButton(
+                          onPressed: () {
+                            userStorage.setItem('email', email.text);
+                            userStorage.setItem('password', password.text);
+                            userStorage.setItem('name', username.text);
+
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => FitnessGoal(),
+                            ));
+                          },
+                          child: Text(
+                            "Sign Up",
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            padding: EdgeInsets.symmetric(vertical: 18.h),
+                            minimumSize: const Size(330, 45),
+                            primary: Theme.of(context).primaryColor,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15.0),
+                            ),
+                          ),
+                        ),
                         SizedBox(
                           height: 20.h,
                         ),

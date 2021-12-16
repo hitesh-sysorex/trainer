@@ -1,4 +1,3 @@
-import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,13 +13,14 @@ class LoginPage extends StatefulWidget {
   _LoginPageState createState() => _LoginPageState();
 }
 
-LocalStorage userStorage = LocalStorage('localstorage_app');
+final LocalStorage userStorage = LocalStorage('user');
 
 class _LoginPageState extends State<LoginPage> {
   FocusNode myFocusNode = FocusNode();
   final _formkey = GlobalKey();
   final TextEditingController email = TextEditingController();
   final TextEditingController password = TextEditingController();
+
   Color color = Colors.black38;
   @override
   Widget build(BuildContext context) {

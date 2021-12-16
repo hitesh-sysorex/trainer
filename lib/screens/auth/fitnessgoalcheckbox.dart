@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:trainer/models/fitnessgoalmodel.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:trainer/screens/auth/injuries.dart';
+import 'package:trainer/screens/auth/loginpage.dart';
 
 class FitnessGoal extends StatefulWidget {
   FitnessGoal({Key? key}) : super(key: key);
@@ -14,6 +15,7 @@ class FitnessGoal extends StatefulWidget {
 }
 
 class _FitnessGoalState extends State<FitnessGoal> {
+  List<String> fitnessArray = [];
   List<NotificationSetting> notifications = [
     NotificationSetting(
         title: 'Weight Loss', imagepath: 'assets/images/weight-loss.png'),
@@ -45,6 +47,8 @@ class _FitnessGoalState extends State<FitnessGoal> {
               right: 20,
               child: IconButton(
                   onPressed: () {
+                    userStorage.setItem('fitnessGoal', fitnessArray);
+                    print(userStorage.getItem('fitnessGoal'));
                     Navigator.of(context).push(
                         MaterialPageRoute(builder: (context) => Injuries()));
                   },
@@ -97,6 +101,8 @@ class _FitnessGoalState extends State<FitnessGoal> {
         notification: notification,
         onClicked: () {
           setState(() {
+            fitnessArray.add(notification.title!);
+            print(fitnessArray.length);
             final newValue = !notification.value;
             notification.value = newValue;
           });

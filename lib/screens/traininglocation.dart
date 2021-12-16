@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:trainer/models/bookform.dart';
+import 'package:trainer/screens/auth/loginpage.dart';
 
 class Location extends StatefulWidget {
   const Location({Key? key}) : super(key: key);
@@ -62,11 +63,11 @@ class _LocationState extends State<Location> {
   Future<void> GetAddressFromLatLong(Position position) async {
     List<Placemark> placemarks =
         await placemarkFromCoordinates(position.latitude, position.longitude);
-    print(placemarks);
+    // print(placemarks);
     Placemark place = placemarks[0];
     Address =
         '${place.street}, ${place.subLocality}, ${place.locality}, ${place.postalCode}, ${place.country}';
-
+    userStorage.setItem('address', Address);
     setState(() {});
   }
 
@@ -96,11 +97,6 @@ class _LocationState extends State<Location> {
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.04,
                   ),
-                  // Text(
-                  //   location,
-                  //   style: TextStyle(color: Colors.black, fontSize: 16),
-                  // ),
-
                   Container(
                     // height: MediaQuery.of(context).size.height * 0.1,
                     width: MediaQuery.of(context).size.width * 0.9,
