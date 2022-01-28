@@ -30,27 +30,30 @@ class _GetTextFieldState extends State<GetTextField> {
         controller: widget.controller,
         focusNode: myFocusNode,
         decoration: InputDecoration(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(15.r),
-              borderSide: const BorderSide(color: Colors.transparent, width: 0),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(15.r),
-              borderSide: const BorderSide(color: Colors.transparent, width: 0),
-            ),
-            // focusColor:const Color(0xffD0EBF9),
-            filled: true,
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(15.r),
-              borderSide:
-                  BorderSide(color: Theme.of(context).primaryColor, width: 1),
-            ),
-            contentPadding:
-                const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-            label: Text(
-              widget.label,
-              style: TextStyle(fontSize: 20.sp, color: color),
-            )),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15.r),
+            borderSide: const BorderSide(color: Colors.transparent, width: 0),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15.r),
+            borderSide: const BorderSide(color: Colors.transparent, width: 0),
+          ),
+          // focusColor:const Color(0xffD0EBF9),
+          filled: true,
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15.r),
+            borderSide:
+                BorderSide(color: Theme.of(context).primaryColor, width: 1),
+          ),
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+          labelText: widget.label,
+          labelStyle: TextStyle(fontSize: 20.sp, color: color),
+          // label: Text(
+          //   widget.label,
+          //   style: TextStyle(fontSize: 20.sp, color: color),
+          // )
+        ),
       ),
     );
   }

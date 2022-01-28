@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:trainer/authentication.dart';
@@ -6,16 +7,16 @@ import 'package:trainer/screens/home/home.dart';
 import 'package:trainer/widgets/textformfield.dart';
 import 'package:localstorage/localstorage.dart';
 
-class LoginPage extends StatefulWidget {
-  LoginPage({Key? key}) : super(key: key);
+class TrainerLoginPage extends StatefulWidget {
+  TrainerLoginPage({Key? key}) : super(key: key);
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _TrainerLoginPageState createState() => _TrainerLoginPageState();
 }
 
 final LocalStorage userStorage = LocalStorage('user');
 
-class _LoginPageState extends State<LoginPage> {
+class _TrainerLoginPageState extends State<TrainerLoginPage> {
   FocusNode myFocusNode = FocusNode();
   final _formkey = GlobalKey();
   final TextEditingController email = TextEditingController();
@@ -29,7 +30,7 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           children: [
             Image.asset(
-              "assets/images/agif.gif",
+              "assets/images/trainerlogin.jpg",
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height * 0.45,
             ),
@@ -87,7 +88,7 @@ class _LoginPageState extends State<LoginPage> {
                           height: 30.h,
                         ),
                         TextField(
-                          controller: email,
+                          controller: password,
                           // autofocus: true,
                           cursorHeight: 26,
                           style: TextStyle(
@@ -102,10 +103,18 @@ class _LoginPageState extends State<LoginPage> {
                                   fontSize:
                                       MediaQuery.textScaleFactorOf(context) *
                                           17),
+                              // label: Text(
+                              //   "Email",
+                              //   style: TextStyle(
+                              //       color: Color(0xff002136),
+                              //       fontSize:
+                              //           MediaQuery.textScaleFactorOf(context) *
+                              //               17),
+                              // ),
                               contentPadding:
                                   EdgeInsets.symmetric(vertical: 18),
                               prefixIcon: Icon(
-                                Icons.email,
+                                Icons.lock,
                                 color: Color(0xff002136),
                               ),
                               border: OutlineInputBorder(
@@ -121,37 +130,30 @@ class _LoginPageState extends State<LoginPage> {
                         SizedBox(
                           height: 40.h,
                         ),
-                        Container(
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              stops: [0.0, 1.0],
-                              colors: [Color(0xff1099d7), Color(0xff05b593)],
-                            ),
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                primary: Colors.transparent,
-                                // Color(0xff45B865),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(15.0)),
-                                fixedSize: Size(
-                                    MediaQuery.of(context).size.width -
-                                        MediaQuery.of(context).size.width *
-                                            0.08,
-                                    MediaQuery.of(context).size.height * 0.07)),
-                            onPressed: () {
-                              signin(email.text, password.text, context);
-                            },
-                            child: Text(
-                              "Sign Up",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w800,
-                                fontSize:
-                                    MediaQuery.of(context).textScaleFactor * 19,
-                              ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              primary: Color(0xff45B865),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15.0)),
+                              fixedSize: Size(
+                                  MediaQuery.of(context).size.width -
+                                      MediaQuery.of(context).size.width * 0.08,
+                                  MediaQuery.of(context).size.height * 0.07)),
+                          onPressed: () {
+                            signin(email.text, password.text, context);
+                            if (FirebaseAuth.instance.currentUser != null) {
+                              // wrong call in wrong place!
+                              Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                      builder: (context) => Home()));
+                            }
+                          },
+                          child: Text(
+                            "Sign Up",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w800,
+                              fontSize:
+                                  MediaQuery.of(context).textScaleFactor * 19,
                             ),
                           ),
                         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trainer/screens/usertype.dart';
 
 import '../main.dart';
 
@@ -19,7 +20,12 @@ class _SplashScreenState extends State<SplashScreen> {
   _navigatetohome() async {
     await Future.delayed(Duration(seconds: 3), () {});
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => MyHomePage()));
+        context,
+        MaterialPageRoute(
+          builder: (context) =>
+              // MyHomePage()
+              UserType(),
+        ));
   }
 
   @override
@@ -31,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
           "assets/images/recor.png",
           fit: BoxFit.contain,
           height: MediaQuery.of(context).size.height * 0.4,
-          width: MediaQuery.of(context).size.width,
+          width: MediaQuery.of(context).size.width * 0.9,
         ),
       ),
     );

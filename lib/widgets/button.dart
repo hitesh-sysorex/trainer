@@ -28,7 +28,7 @@ class _ButtonState extends State<Button> {
         style: ElevatedButton.styleFrom(
           padding: EdgeInsets.symmetric(vertical: 18.h),
           minimumSize: const Size(330, 45),
-          primary: Theme.of(context).primaryColor,
+          primary: Color(0xff45B865),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
           ),

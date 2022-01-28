@@ -46,20 +46,17 @@ class _FitnessGoalState extends State<FitnessGoal> {
               bottom: 20,
               right: 20,
               child: IconButton(
-                onPressed: () {
-                  userStorage.setItem('fitnessGoal', fitnessArray);
-                  print(userStorage.getItem('fitnessGoal'));
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => Injuries()));
-                },
-                icon: Container(
-                  child: Icon(
+                  onPressed: () {
+                    userStorage.setItem('fitnessGoal', fitnessArray);
+                    print(userStorage.getItem('fitnessGoal'));
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => Injuries()));
+                  },
+                  icon: Icon(
                     MdiIcons.arrowRightBoldCircle,
                     color: Theme.of(context).primaryColor,
                     size: 50.w,
-                  ),
-                ),
-              ),
+                  )),
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -73,10 +70,7 @@ class _FitnessGoalState extends State<FitnessGoal> {
                   alignment: Alignment.center,
                   child: Text(
                     "What are your Fitness Goals?",
-                    style: TextStyle(
-                        color: Color(0xff002136),
-                        fontSize: 22,
-                        fontWeight: FontWeight.w500),
+                    style: Theme.of(context).textTheme.headline4,
                   ),
                 ),
                 SizedBox(
@@ -87,7 +81,7 @@ class _FitnessGoalState extends State<FitnessGoal> {
                   child: GridView.count(
                     crossAxisCount: 2,
                     childAspectRatio: 1.0,
-                    padding: const EdgeInsets.all(4.0),
+                    padding: const EdgeInsets.all(4),
                     shrinkWrap: true,
                     primary: false,
                     mainAxisSpacing: 20.w,
@@ -135,7 +129,6 @@ class _FitnessGoalState extends State<FitnessGoal> {
                   notification.imagepath!,
                   height: MediaQuery.of(context).size.height * 0.1,
                   width: 100,
-                  fit: BoxFit.fitHeight,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 4.0),
@@ -143,17 +136,11 @@ class _FitnessGoalState extends State<FitnessGoal> {
                     children: [
                       Expanded(
                         flex: 4,
-                        child: Padding(
-                          padding:
-                              EdgeInsets.only(left: 8.0, top: 4, bottom: 4),
-                          child: Text(
-                            notification.title!,
-                            style: TextStyle(
-                                color: Color(0xff1099d7),
-                                // Theme.of(context).primaryColor,
-                                fontSize:
-                                    MediaQuery.textScaleFactorOf(context) * 16),
-                          ),
+                        child: Text(
+                          notification.title!,
+                          style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 20.sp),
                         ),
                       ),
                       Expanded(

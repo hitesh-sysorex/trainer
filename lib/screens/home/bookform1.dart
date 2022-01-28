@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:trainer/models/bookform.dart';
+import 'package:trainer/screens/home/brodcast.dart';
 import 'package:trainer/screens/home/home.dart';
 
 class BookForm1 extends StatefulWidget {
@@ -93,7 +94,10 @@ class _BookForm1State extends State<BookForm1> {
                 bottom: 15,
                 right: 30,
                 child: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (context) => Brodcast()));
+                  },
                   icon: Icon(MdiIcons.arrowRightBoldCircle,
                       color: Theme.of(context).primaryColor, size: 50),
                 ),

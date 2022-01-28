@@ -1,22 +1,20 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:trainer/screens/home/bookform1.dart';
-import 'package:trainer/screens/home/brodcast.dart';
-import 'package:trainer/screens/auth/continuepage.dart';
+import 'package:trainer/screens/auth/check.dart';
 import 'package:trainer/screens/auth/fitnessgoalcheckbox.dart';
-import 'package:trainer/screens/home/home.dart';
+// import 'package:trainer/screens/auth/fitnessnew.dart';
 import 'package:trainer/screens/auth/injuries.dart';
+import 'package:trainer/screens/home/home.dart';
 import 'package:trainer/screens/auth/loginpage.dart';
-import 'package:trainer/screens/auth/mainscreen.dart';
-// import 'package:trainer/screen.dart/mainscreen.dart';
-import 'package:trainer/screens/auth/signup.dart';
 import 'package:trainer/screens/splash.dart';
-import 'package:trainer/screens/trainerprofile.dart';
-import 'package:trainer/screens/traininglocation.dart';
-import 'package:trainer/screens/yourprofile.dart';
+import 'package:trainer/screens/usertype.dart';
 
 // @dart=2.9
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -37,29 +35,34 @@ class MyApp extends StatelessWidget {
                 textTheme: const TextTheme(
                   headline1: TextStyle(
                     fontSize: 26.0,
-                    color: Color(0xff003744),
+                    color: Color(0xff002136),
                     fontWeight: FontWeight.bold,
                   ),
                   headline4: TextStyle(
                     fontSize: 22.0,
-                    color: Color(0xff003744),
+                    color: Color(0xff139dc1),
+                    // Color(0xff002136),
                     fontWeight: FontWeight.w600,
                   ),
                   headline3: TextStyle(
                     fontSize: 16,
-                    color: Color(0xff003744),
+                    color: Color(0xff002136),
                     fontWeight: FontWeight.w600,
                   ),
                   headline2: TextStyle(
                       fontSize: 18,
-                      color: Color(0xff003744),
+                      color: Color(0xff002136),
                       fontStyle: FontStyle.normal),
                   bodyText2: TextStyle(
                     fontSize: 14.0,
                   ),
                 ),
               ),
-              home: SplashScreen(),
+              home:
+                  // Injuries(),
+                  // UserType(),
+                  // FitnessGoal(),
+                  SplashScreen(),
             ),
         designSize: const Size(428, 971));
   }
@@ -75,6 +78,10 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return FitnessGoal();
+    if (FirebaseAuth.instance.currentUser?.uid == null) {
+      return LoginPage();
+    } else {
+      return Home();
+    }
   }
 }

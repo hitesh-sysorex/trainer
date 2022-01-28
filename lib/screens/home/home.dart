@@ -1,6 +1,7 @@
 import 'package:fancy_bottom_navigation/fancy_bottom_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:trainer/authentication.dart';
 // import 'package:motion_tab_bar/MotionTabController.dart';
 // import 'package:motion_tab_bar/motiontabbar.dart';
 import 'package:trainer/models/categories.dart';
@@ -33,7 +34,7 @@ List<Trainers> trainer = [
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   int currentindex = 0;
   bool flag = true;
-  final screens = [YourProfile()];
+  // final screens = [YourProfile()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,8 +74,22 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         fontWeight: FontWeight.w600),
                   ),
                 ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                      onPressed: () {
+                        signout(context);
+                      },
+                      child: Text(
+                        "Logout",
+                        style: TextStyle(
+                            fontSize:
+                                MediaQuery.textScaleFactorOf(context) * 16,
+                            color: Theme.of(context).primaryColor),
+                      )),
+                ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.04,
+                  height: MediaQuery.of(context).size.height * 0.01,
                 ),
                 Align(
                   alignment: Alignment.centerLeft,
@@ -254,7 +269,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     child: Text(
                       cat.name,
                       style: TextStyle(
-                        overflow: TextOverflow.ellipsis,
+                        // overflow: TextOverflow.ellipsis,
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: MediaQuery.of(context).textScaleFactor * 18,

@@ -3,6 +3,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:trainer/models/bookform.dart';
 import 'package:trainer/screens/auth/loginpage.dart';
+import 'package:trainer/screens/home/home.dart';
 
 class Location extends StatefulWidget {
   const Location({Key? key}) : super(key: key);
@@ -17,10 +18,6 @@ class _LocationState extends State<Location> {
     BookFormModel(title: "Appartment Gym"),
     BookFormModel(title: "Outdoor"),
     BookFormModel(title: "Other"),
-  ];
-
-  List<dynamic> data = [
-    {"lat": 22.0868, "lng": 82.1432}
   ];
 
   String location = 'Null, Press Button';
@@ -157,7 +154,10 @@ class _LocationState extends State<Location> {
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             primary: Theme.of(context).primaryColor),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).push(
+                              MaterialPageRoute(builder: (context) => Home()));
+                        },
                         child: Padding(
                           padding: EdgeInsets.symmetric(vertical: 8.0),
                           child: Text("You Are Ready"),

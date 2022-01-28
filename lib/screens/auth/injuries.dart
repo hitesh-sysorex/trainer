@@ -3,9 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:trainer/models/fitnessgoalmodel.dart';
 import 'package:material_design_icons_flutter/icon_map.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:trainer/screens/auth/check.dart';
 import 'package:trainer/screens/auth/fitnessgoalcheckbox.dart';
 import 'package:trainer/screens/auth/loginpage.dart';
-import 'package:trainer/screens/traininglocation.dart';
+import 'package:trainer/screens/home/home.dart';
+// import 'package:trainer/screens/traininglocation.dart';
 
 class Injuries extends StatefulWidget {
   Injuries({Key? key}) : super(key: key);
@@ -18,8 +20,7 @@ class _InjuriesState extends State<Injuries> {
   List<String> injuriesArray = [];
   List<NotificationSetting> notifications = [
     NotificationSetting(
-        title: "no I don't have any medical conditions",
-        imagepath: "assets/images/healthy.png"),
+        title: "no problems", imagepath: "assets/images/healthy.png"),
     NotificationSetting(
         title: "Asthama", imagepath: 'assets/images/asthma.png'),
     NotificationSetting(
@@ -36,77 +37,83 @@ class _InjuriesState extends State<Injuries> {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Stack(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
             children: [
               SizedBox(
-                height: MediaQuery.of(context).size.height,
+                height: MediaQuery.of(context).size.height * 0.04,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.04,
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 3.0),
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    "Do you have any injuries or pre-existing medical conditions?",
+                    style: TextStyle(
+                        color: Color(0xff002136),
+                        fontSize: 22,
+                        fontWeight: FontWeight.w500),
+                    textAlign: TextAlign.center,
                   ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      "Do you have any injuries or pre-existing medical conditions?",
-                      style: Theme.of(context).textTheme.headline2,
-                      textAlign: TextAlign.center,
+                ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.03,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 14.0.w),
+                child: GridView.count(
+                  crossAxisCount: 2,
+                  childAspectRatio: 1.0,
+                  padding: const EdgeInsets.all(4.0),
+                  shrinkWrap: true,
+                  primary: false,
+                  mainAxisSpacing: 24.w,
+                  crossAxisSpacing: 34.h,
+                  children: notifications.map(buildSingleCheckbox).toList(),
+                ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.05,
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.only(left: 8.0, right: 16, bottom: 18),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: IconButton(
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => FitnessGoal()));
+                          },
+                          icon: Icon(
+                            MdiIcons.arrowLeftBoldCircle,
+                            color: Theme.of(context).primaryColor,
+                            size: 50.w,
+                          )),
                     ),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.03,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 14.0.w),
-                    child: GridView.count(
-                      crossAxisCount: 2,
-                      childAspectRatio: 1.0,
-                      padding: const EdgeInsets.all(4.0),
-                      shrinkWrap: true,
-                      primary: false,
-                      mainAxisSpacing: 24.w,
-                      crossAxisSpacing: 34.h,
-                      children: notifications.map(buildSingleCheckbox).toList(),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: IconButton(
+                          onPressed: () {
+                            userStorage.setItem('injuries', injuriesArray);
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => Check()));
+                          },
+                          icon: Icon(
+                            MdiIcons.arrowRightBoldCircle,
+                            color: Theme.of(context).primaryColor,
+                            size: 50.w,
+                          )),
                     ),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.1,
-                  )
-                ],
-              ),
-              Positioned(
-                bottom: 20,
-                left: 10,
-                child: IconButton(
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => FitnessGoal()));
-                    },
-                    icon: Icon(
-                      MdiIcons.arrowLeftBoldCircle,
-                      color: Theme.of(context).primaryColor,
-                      size: 50.w,
-                    )),
-              ),
-              Positioned(
-                bottom: 20,
-                right: 20,
-                child: IconButton(
-                    onPressed: () {
-                      userStorage.setItem('injuries', injuriesArray);
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => Location()));
-                    },
-                    icon: Icon(
-                      MdiIcons.arrowRightBoldCircle,
-                      color: Theme.of(context).primaryColor,
-                      size: 50.w,
-                    )),
-              ),
+                  ],
+                ),
+              )
             ],
           ),
         ),
@@ -143,8 +150,9 @@ class _InjuriesState extends State<Injuries> {
               children: [
                 Image.asset(
                   notification.imagepath!,
-                  height: 100,
-                  width: 100,
+                  height: MediaQuery.of(context).size.height * 0.12,
+                  width: MediaQuery.of(context).size.height * 0.4,
+                  fit: BoxFit.fitHeight,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -152,11 +160,15 @@ class _InjuriesState extends State<Injuries> {
                     children: [
                       Expanded(
                         flex: 4,
-                        child: Text(
-                          notification.title!,
-                          style: TextStyle(
-                              color: Theme.of(context).primaryColor,
-                              fontSize: 20.sp),
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              left: 8.0, top: 4, bottom: 4),
+                          child: Text(
+                            notification.title!,
+                            style: TextStyle(
+                                color: Theme.of(context).primaryColor,
+                                fontSize: 20.sp),
+                          ),
                         ),
                       ),
                       Expanded(

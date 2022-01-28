@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "685618900713",
+    "project_id": "trainee-fitnessapp",
+    "storage_bucket": "trainee-fitnessapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:685618900713:android:6d7dbc6b221a3288e44a78",
+        "android_client_info": {
+          "package_name": "com.example.trainer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "685618900713-mo8nqp3smcq6he3urqvc8pr25snsq2rd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3atemVn91uDfk1Y0X5LAodsRf-TsY9o4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "685618900713-mo8nqp3smcq6he3urqvc8pr25snsq2rd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
