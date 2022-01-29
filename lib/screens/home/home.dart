@@ -23,6 +23,8 @@ List<Categories> category = [
   Categories("Yoga", "assets/images/yoga.png", color: Color(0xff00B9FF)),
   Categories("Yoga", "assets/images/yoga.png", color: Color(0xff004DE7)),
   Categories("Yoga", "assets/images/yoga.png", color: Color(0xff00B9FF)),
+  Categories("Yoga", "assets/images/yoga.png", color: Color(0xff00B9FF)),
+  Categories("Yoga", "assets/images/yoga.png", color: Color(0xff00B9FF)),
   Categories("Meditation", "assets/images/meditation.png",
       color: Color(0xff0A7DE1))
 ];
@@ -54,6 +56,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     );
   }
 
+// print("That we need in html page..."),
   _getPage(int page) {
     switch (page) {
       case 0:
