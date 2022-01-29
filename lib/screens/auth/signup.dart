@@ -53,11 +53,11 @@ class _SignupScreenState extends State<SignupScreen> {
                         fontSize: MediaQuery.textScaleFactorOf(context) * 18),
                     cursorColor: Theme.of(context).primaryColor,
                     decoration: InputDecoration(
-                        labelStyle: TextStyle(
+                        hintStyle: TextStyle(
                             color: Color(0xff002136),
                             fontSize:
                                 MediaQuery.textScaleFactorOf(context) * 17),
-                        labelText: "First Name",
+                        hintText: "First Name",
                         contentPadding: EdgeInsets.symmetric(vertical: 18),
                         prefixIcon: Icon(
                           Icons.account_circle_rounded,
@@ -71,7 +71,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           borderRadius: BorderRadius.circular(15),
                         ),
                         filled: true,
-                        fillColor: Color(0xff139dc1).withOpacity(0.2)),
+                        fillColor: Color(0xff139dc1).withOpacity(0.15)),
                   ),
                   SizedBox(
                     height: size.height * 0.025,
@@ -85,11 +85,11 @@ class _SignupScreenState extends State<SignupScreen> {
                         fontSize: MediaQuery.textScaleFactorOf(context) * 18),
                     cursorColor: Theme.of(context).primaryColor,
                     decoration: InputDecoration(
-                        labelStyle: TextStyle(
+                        hintStyle: TextStyle(
                             color: Color(0xff002136),
                             fontSize:
                                 MediaQuery.textScaleFactorOf(context) * 17),
-                        labelText: "Last Name",
+                        hintText: "Last Name",
                         // label: Text(
                         //   "User Name",
                         //   style: TextStyle(
@@ -110,7 +110,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           borderRadius: BorderRadius.circular(15),
                         ),
                         filled: true,
-                        fillColor: Color(0xff139dc1).withOpacity(0.2)),
+                        fillColor: Color(0xff139dc1).withOpacity(0.15)),
                   ),
                   SizedBox(
                     height: size.height * 0.025,
@@ -131,8 +131,8 @@ class _SignupScreenState extends State<SignupScreen> {
                         //       fontSize:
                         //           MediaQuery.textScaleFactorOf(context) * 17),
                         // ),
-                        labelText: "Email",
-                        labelStyle: TextStyle(
+                        hintText: "Email",
+                        hintStyle: TextStyle(
                             color: Color(0xff002136),
                             fontSize:
                                 MediaQuery.textScaleFactorOf(context) * 17),
@@ -149,7 +149,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           borderRadius: BorderRadius.circular(15),
                         ),
                         filled: true,
-                        fillColor: Color(0xff139dc1).withOpacity(0.2)),
+                        fillColor: Color(0xff139dc1).withOpacity(0.15)),
                   ),
                   SizedBox(
                     height: size.height * 0.025,
@@ -170,11 +170,11 @@ class _SignupScreenState extends State<SignupScreen> {
                         //       fontSize:
                         //           MediaQuery.textScaleFactorOf(context) * 17),
                         // ),
-                        labelStyle: TextStyle(
+                        hintStyle: TextStyle(
                             color: Color(0xff002136),
                             fontSize:
                                 MediaQuery.textScaleFactorOf(context) * 17),
-                        labelText: "Password",
+                        hintText: "Password",
                         contentPadding: EdgeInsets.symmetric(vertical: 18),
                         prefixIcon: Icon(
                           Icons.lock,
@@ -188,7 +188,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           borderRadius: BorderRadius.circular(15),
                         ),
                         filled: true,
-                        fillColor: Color(0xff139dc1).withOpacity(0.2)),
+                        fillColor: Color(0xff139dc1).withOpacity(0.15)),
                   ),
                   SizedBox(
                     height: size.height * 0.025,
@@ -199,12 +199,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         stops: [0.0, 1.0],
-                        colors: [
-                          Color(0xff1099d7),
-                          Color(0xff05b593)
-                          // Colors.deepPurple.shade400,
-                          // Colors.deepPurple.shade200,
-                        ],
+                        colors: [Color(0xff1099d7), Color(0xff05b593)],
                       ),
                       borderRadius: BorderRadius.circular(15),
                     ),
@@ -253,7 +248,8 @@ class _SignupScreenState extends State<SignupScreen> {
                         child: Text(
                           "Sign In",
                           style: TextStyle(
-                            color: Color(0xff139dc1),
+                            color: Color(0xff1099d7),
+                            // Color(0xff139dc1),
                             fontSize:
                                 MediaQuery.of(context).textScaleFactor * 17,
                           ),

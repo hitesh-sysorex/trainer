@@ -21,6 +21,7 @@ class _ContinuePageState extends State<ContinuePage> {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.15,
             ),
+
             Text(
               "Help Us To Know You Better",
               style: TextStyle(
@@ -52,12 +53,7 @@ class _ContinuePageState extends State<ContinuePage> {
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                     stops: [0.0, 1.0],
-                    colors: [
-                      Color(0xff1099d7),
-                      Color(0xff05b593)
-                      // Colors.deepPurple.shade400,
-                      // Colors.deepPurple.shade200,
-                    ],
+                    colors: [Color(0xff1099d7), Color(0xff05b593)],
                   ),
                   borderRadius: BorderRadius.circular(15),
                 ),

@@ -16,6 +16,9 @@ class FitnessGoal extends StatefulWidget {
 
 class _FitnessGoalState extends State<FitnessGoal> {
   List<String> fitnessArray = [];
+  final Shader linearGradient = LinearGradient(
+    colors: <Color>[Color(0xff1099d7), Color(0xff05b593)],
+  ).createShader(Rect.fromLTWH(0.0, 0.0, 200.0, 70.0));
   List<NotificationSetting> notifications = [
     NotificationSetting(
         title: 'Weight Loss', imagepath: 'assets/images/weight-loss.png'),
@@ -43,24 +46,59 @@ class _FitnessGoalState extends State<FitnessGoal> {
               height: MediaQuery.of(context).size.height,
             ),
             Positioned(
-              bottom: 20,
-              right: 20,
-              child: IconButton(
-                onPressed: () {
-                  userStorage.setItem('fitnessGoal', fitnessArray);
-                  print(userStorage.getItem('fitnessGoal'));
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => Injuries()));
-                },
-                icon: Container(
-                  child: Icon(
-                    MdiIcons.arrowRightBoldCircle,
-                    color: Theme.of(context).primaryColor,
-                    size: 50.w,
+                bottom: 10,
+                right: 10,
+                child: GestureDetector(
+                  child: Container(
+                    width: MediaQuery.of(context).size.width * 0.21,
+                    // decoration: BoxDecoration(
+                    //   gradient: LinearGradient(
+                    //     begin: Alignment.topLeft,
+                    //     end: Alignment.bottomRight,
+                    //     stops: [0.0, 1.0],
+                    //     colors: [Color(0xff1099d7), Color(0xff05b593)],
+                    //   ),
+                    //   borderRadius: BorderRadius.circular(15),
+                    // ),
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () {
+                          userStorage.setItem('fitnessGoal', fitnessArray);
+                          print(userStorage.getItem('fitnessGoal'));
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => Injuries()));
+                        },
+                        child: Text(
+                          "Next",
+                          style: TextStyle(
+                              // color: Color(0xff002136),
+                              fontSize: 18,
+                              color: Color(0xff006fb6),
+                              // foreground: Paint()..shader = linearGradient,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ),
+                    ),
                   ),
+                )
+                // IconButton(
+                //   onPressed: () {
+                //     userStorage.setItem('fitnessGoal', fitnessArray);
+                //     print(userStorage.getItem('fitnessGoal'));
+                //     Navigator.of(context).push(
+                //         MaterialPageRoute(builder: (context) => Injuries()));
+                //   },
+                //   icon: Container(
+                //     child: Icon(
+                //       MdiIcons.arrowRightBoldCircle,
+                //       color: Color(0xff002136),
+                //       //  colors: Paint()..shader = linearGradient,
+                //       size: 50.w,
+                //     ),
+                //   ),
+                // ),
                 ),
-              ),
-            ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -74,8 +112,9 @@ class _FitnessGoalState extends State<FitnessGoal> {
                   child: Text(
                     "What are your Fitness Goals?",
                     style: TextStyle(
-                        color: Color(0xff002136),
+                        // color: Color(0xff002136),
                         fontSize: 22,
+                        foreground: Paint()..shader = linearGradient,
                         fontWeight: FontWeight.w500),
                   ),
                 ),
@@ -90,8 +129,8 @@ class _FitnessGoalState extends State<FitnessGoal> {
                     padding: const EdgeInsets.all(4.0),
                     shrinkWrap: true,
                     primary: false,
-                    mainAxisSpacing: 20.w,
-                    crossAxisSpacing: 34.h,
+                    mainAxisSpacing: 15.w,
+                    crossAxisSpacing: 24.h,
                     children: notifications.map(buildSingleCheckbox).toList(),
                   ),
                 ),
@@ -119,21 +158,21 @@ class _FitnessGoalState extends State<FitnessGoal> {
     @required VoidCallback? onClicked,
   }) =>
       SizedBox(
-        height: MediaQuery.of(context).size.height * 0.2,
-        width: MediaQuery.of(context).size.width * 0.3,
+        // height: MediaQuery.of(context).size.height * 0.2,
+        // width: MediaQuery.of(context).size.width * 0.3,
         child: GestureDetector(
           onTap: onClicked,
           child: Card(
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
             elevation: notification!.value ? 6 : 0,
-            color: notification.value ? Color(0xffD5EDF9) : Color(0xffF2F2F2),
+            color: notification.value ? Color(0xffdbf1ff) : Color(0xffF2F2F2),
             borderOnForeground: false,
             child: Column(
               children: [
                 Image.asset(
                   notification.imagepath!,
-                  height: MediaQuery.of(context).size.height * 0.1,
+                  height: MediaQuery.of(context).size.height * 0.112,
                   width: 100,
                   fit: BoxFit.fitHeight,
                 ),
@@ -149,7 +188,8 @@ class _FitnessGoalState extends State<FitnessGoal> {
                           child: Text(
                             notification.title!,
                             style: TextStyle(
-                                color: Color(0xff1099d7),
+                                color: Color(0xff002136),
+                                //  Color(0xff1099d7),
                                 // Theme.of(context).primaryColor,
                                 fontSize:
                                     MediaQuery.textScaleFactorOf(context) * 16),
@@ -161,6 +201,7 @@ class _FitnessGoalState extends State<FitnessGoal> {
                         child: Checkbox(
                           shape: CircleBorder(),
                           value: notification.value,
+                          activeColor: Color(0xff006fb6),
                           onChanged: (value) => onClicked!(),
                         ),
                       ),
